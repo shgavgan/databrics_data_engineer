@@ -1,0 +1,42 @@
+order_id,user_id,product_id,quantity,price,order_ts,status,raw_notes
+1001,501,2001,1,499.00,2025-10-12T09:12:00Z,COMPLETED,"{\"coupon\":\"WELCOME10\"}"
+1002,502,2003,2,199.50,2025-10-12T09:15:00Z,PLACED,""
+1003,501,2002,1,299.00,2025-10-12T09:17:00Z,CANCELLED,"\"customer called\""
+1004,503,2001,3,499.00,2025-10-13T12:03:00Z,COMPLETED,""
+1005,504,2004,1,1299.99,2025-10-13T12:10:00Z,COMPLETED,"{\"gift\":true}"
+1006,502,2003,0,199.50,2025-10-13T12:15:00Z,PLACED,"quantity zero (bad)"
+1007,505,2005,1,59.99,2025-10-14T08:00:00Z,COMPLETED,""
+1008,501,2001,1,499.00,2025-10-14T08:05:00Z,COMPLETED,"duplicate of 1001? (test)"
+
+
+https://dbc-95eda8dc-302b.cloud.databricks.com/editor/notebooks/1088111819938638?o=1274576847508910#command/8141720959796054
+
+employee_id
+	
+employee_name
+	
+department
+	
+salary
+
+
+select * from 
+( select employee_id , department, salary, 
+row_number() over(partition by department order by salary desc) as rn
+from emp
+)
+where rn < = 3
+;
+
+
+input =
+[1, 2, Test, 6, Test, Test, 10, Test]
+Output =
+[1, 2, 2, 6, 6,6, 10, 10]
+
+
+for i in range(1, len(lst) :
+  if lst[i] == 'Test':
+    lst[i] = lst[i-1]
+
+print(lst)
